@@ -66,12 +66,31 @@ Run following steps to add domain to be pointed to production app via CLI:
             TTL             600
             ```
             Replace ```xxxxx.herokuapp.com``` with the DNS Target value next to ```funGyaan.com```
+    4. Configuring SSL (Optional)
+        1. Get a free SSL for your domain name (e.g. from www.sslforfree.com)
+        2. Download the zip containing ```ca_bundle.crt```, ```certificate.crt``` and ```private.key```
+        3. Upgrade dyno to Hobby or above
+        4. Click on Configure SSL
+        5. If there is already some SSL configured, click on ```Remove SSL```. Else skip this step
+        6. Click on ```Manual Certificate```
+        7. Drag and drop certificate.crt in public certificate section
+        8. Drag and drop private.key in private key section
+        9. Click on ```Next```
+        10. If the SSL matches the already added domains, it'll say ```Your SSL certificate is now setup```
+
+        ![Configure SSL](images/ConfigureSSL.png "Configure SSL")
+        ![Remove SSL / Manual Certificate](images/RemoveSSL-ManualCertificate.png "Remove SSL / Manual Certificate")
+        ![Public Certificate and Private Key](images/CertificateAndKey.png "Public Certificate and Private Key")
+        ![SSL Configuration Successful](images/SSLConfuguredSuccessfully.png "SSL Configuration Successful")
 
 ## Step 4
 Add all the records from Domain Name Registrar to PointDNS (there are some record which needs be entered in different format, so read the placeholder test carefully in PointDNS).
 > Skip this step, if there isn't any record
 
 ## Step 5
+Just to make sure, compare the added records on PointDNS with the exported file in Step 1.
+
+## Step 6
 Update the NameServer on Domain Name Registrar by replacing the original NS by PointDNS NS.
 ```
 dns12.pointhq.com
@@ -87,24 +106,22 @@ dns14.pointhq.com
 ![NS](images/NameServer2.png "NS")
 
 
-## Step 6
-
+## Step 7
 When a domain is newly registered, or the nameservers are changed, or DNS changes are made, you can expect a propagation time up to 48 hours. This is because it takes time for the DNS to take effect across the internet. The actual time of propagation may vary in some locations based on your network setup. Generally it would take 2-3 hours or less.
 
-## Step 7
-
+## Step 8
 Visit PointDNS add-on and click on the dot next to domain name under the title status
 
 > It will recheck the NS and if the status becomes green then everything went well while pointing
 
 > Remember this will test the NS and not other records, so we need to verify them from client
 
-## Step 8
+## Step 9
 Check the status on [DNS checker](https://dnschecker.org/)
 
 > This will provide all the latest zone records except CNAME.
 
-## Step 9
+## Step 10
 If the above url is showing pointDNS NS, then we have successfully updated the NS and rest of the records like MX can be confirmed from client as the email should work in same as was working before.
 
 If this doesn't succeed we can revert the NS on domain name registrar just by importing the records that were exported in Step 1 and look into the possible errors that we may have made during the process.
@@ -116,4 +133,4 @@ So the possible issues can be:
 
 > While making changes in NS, please check domain forwarding, masking or SSL.
 
-> If SSL is already implemented on domain, then it must be uploaded and verified on the app or site where we are pointing the website to.
+> If SSL is already implemented on domain, then it must be uploaded and verified on the app or site where we are pointing the website/app to.
