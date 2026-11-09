@@ -1,3 +1,5 @@
+> **Archived.** Written in 2020 and kept as a record of earlier work. It is no longer maintained and its dependencies are outdated.
+
 # Pointing Site via PointDNS
 
 ## Why PointDNS ?
