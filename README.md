@@ -2,7 +2,7 @@
 
 # Pointing Site via PointDNS
 
-## Why PointDNS ?
+## Why PointDNS?
 By Default Heroku supports CNAME records only. CNAME record does not require hard-coded IP addresses and allows Heroku to manage the set of IPs associated with your domain. However, CNAME records are not available at the zone apex and can’t be used to configure root domains.
 
 Heroku doesn’t support DNS A-records and does not provide hard-coded IP addresses which are required for A-records DNS. This prevents your infrastructure provider from assigning your app a new IP address on your behalf when adverse conditions arise and can have a serious impact on your app’s uptime.
@@ -10,7 +10,7 @@ Heroku doesn’t support DNS A-records and does not provide hard-coded IP addres
 PointDNS add-on provide us the facility to add A-records DNS on Heroku app.
 
 ## Step 1
-Export Zone records from DNS panel (just for reference) : In Godaddy we have the option to export Zone records for unix / windows, export in either way so that we can save it for case if we need to revert those records.
+Export Zone records from DNS panel (just for reference): In Godaddy we have the option to export Zone records for unix / windows, export in either way so that we can save it for case if we need to revert those records.
 
 ## Step 2
 Consider ```funGyaan.com``` as our target domain for all the steps. Change ```funGyaan.com``` with your domain name.
